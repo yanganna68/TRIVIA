@@ -1,4 +1,10 @@
-<h1>Welcome to TRIVIA</h1>
+<h1><center>Welcome to TRIVIA</center></h1><br>
 
-<%= link_to "Sign In", new_session_path %><br>
-<%= link_to "Sign Up", new_user_path %>
+<% if logged_in? %>
+ <%= link_to "Go to Userpage", user_path(current_user), {class: "fluid ui blue button"} %>
+<% else %>
+ <div class="ui two item blue menu">
+   <%= link_to "Sign In", new_session_path, {class: 'item'} %>
+   <%= link_to "Sign Up", new_user_path, {class: 'item'} %>
+ </div>
+<% end %>

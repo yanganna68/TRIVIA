@@ -3,15 +3,14 @@ class QuizzesController < ApplicationController
 
 
   def index
-    @quiz = Quiz.new
+
+    # @quiz = Quiz.create(challenge_id: )
     @categories = AVAILABLE_CATEGORIES
   end
 
   def show
-
     url = get_category_route(params[:id])
     @questions = parse_category_route(url)
-    @hi = "Finish these lyrics from the 2016 song &quot;Panda&quot; by Desiigner: &quot;I got broads in _______&quot;.:"
 
     @question1 = question_creation_helper(0)
     @question2 = question_creation_helper(1)

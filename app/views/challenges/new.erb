@@ -1,0 +1,9 @@
+<h1><center>Please Select Your Opponent:</center></h1>
+
+
+
+
+<%= form_for(user_challenge_path) do |f|%>
+<%= f.collection_select :user_id, User.all,:id, :username %>
+<%= f.submit "Choose"%>
+<% end %>

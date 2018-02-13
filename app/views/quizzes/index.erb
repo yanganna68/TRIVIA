@@ -4,7 +4,7 @@
 <div class="ui grid">
     <% @categories.each do |category_name, category_id| %>
     <div class="four wide column">
-      <i class="bomb icon"></i><a class="header" href="/quizzes/<%= @quiz.id %>"><%= category_name %></a>
+      <i class="bomb icon"></i><a class="header" href="/quizzes/<%= category_id %>"><%= category_name %></a>
     </div>
     <% end %>
 </div>

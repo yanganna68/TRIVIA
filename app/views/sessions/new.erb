@@ -1,20 +1,25 @@
-<h1>Login</h1>
+<% if logged_in? %>
+ <br>
+ <p><b>Already logged in!</b></p><br>
+ <p><%= link_to 'Logout?', logout_path, {class: 'ui button', method: 'DELETE'} %></p>
+<% else %>
+ <h1>Login</h1>
 
-<% if flash[:message] %>
-  <p><%=flash[:message]%></p>
-<% end %>
+ <% if flash[:message] %>
+   <p><%=flash[:message]%></p>
+ <% end %>
+ <%= form_tag '/login', {class: 'ui form'}  do %>
 
-<%= form_tag '/login', {class: 'ui form'}  do %>
+   <div class="field">
+     <label for="username">Username</label>
+     <%= text_field_tag :'user[username]' %>
+   </div>
 
-  <div class="field">
-    <label for="username">Username</label>
-    <%= text_field_tag :'user[username]' %>
-  </div>
+   <div class="field">
+     <label for="password">Password</label>
+     <%= password_field_tag :'user[password]' %>
+   </div>
 
-  <div class="field">
-    <label for="password">Password</label>
-    <%= password_field_tag :'user[password]' %>
-  </div>
-
-  <%= submit_tag 'Login' %>
+   <%= submit_tag 'Login' %>
+ <% end %>
 <% end %>

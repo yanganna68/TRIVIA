@@ -10,67 +10,47 @@
 
     <form class="ui form" action="/result" method="POST">
       <div class="grouped fields">
-        <label><%= @question1.question_text.html_safe %>:</label>
+        <h3><label><%= @question1.question_text.html_safe %>:</label></h3>
           <% @question1.random_answers.each do |a| %>
-          <div class="field">
-            <div class="ui radio checkbox">
-              <input type="radio" name="questions[]["user_answer"]">
-              <label><%= a.html_safe %></label>
-            </div>
-          </div>
+              <p><input type="radio" name=questions[]["user_answer"]> <label> <%= a.html_safe %></label></p>
         <% end %>
       </div>
     <br>
 
+    <div class="grouped fields">
+      <h3><label><%= @question2.question_text.html_safe %>:</label></h3>
+        <% @question2.random_answers.each do |a| %>
+            <p><input type="radio" name=questions[1]["user_answer"]> <label> <%= a.html_safe %></label></p>
+      <% end %>
+    </div>
+  <br>
 
-      <div class="grouped fields">
-        <%= @question2.question_text.html_safe %>:
-        <div class="field">
-          <% @question2.random_answers.each do |a| %>
-          <div class="ui radio checkbox">
-            <input type="radio" name=questions[]["user_answer"]>
-            <label><%= a.html_safe %></label>
-          </div><br>
-          <% end %>
-        </div>
-      </div>
-    <br>
-      <div class="grouped fields">
-        <%= @question3.question_text.html_safe %>:
-        <div class="field">
-          <% @question3.random_answers.each do |a| %>
-          <div class="ui radio checkbox">
-            <input type="radio" name=questions[]["user_answer"]>
-            <label><%= a.html_safe %></label>
-          </div><br>
-          <% end %>
-        </div>
-      </div>
-    <br>
-      <div class="grouped fields">
-        <%= @question4.question_text.html_safe %>:
-        <div class="field">
-          <% @question4.random_answers.each do |a| %>
-          <div class="ui radio checkbox">
-            <input type="radio" name="questions[]["user_answer"]" >
-            <label><%= a.html_safe %></label>
-          </div><br>
-          <% end %>
-        </div>
-      </div>
-    <br>
-      <div class="grouped fields">
-        <%= @question5.question_text.html_safe %>:
-        <div class="field">
-          <% @question5.random_answers.each do |a| %>
-          <div class="ui radio checkbox">
-            <input type="radio" name=questions[]["user_answer"]>
-            <label><%= a.html_safe %></label>
-          </div><br>
-          <% end %>
-        </div>
-      </div>
-    <br>
+  <div class="grouped fields">
+    <h3><label><%= @question3.question_text.html_safe %>:</label></h3>
+      <% @question3.random_answers.each do |a| %>
+          <p><input type="radio" name=questions[2]["user_answer"]> <label> <%= a.html_safe %></label></p>
+    <% end %>
+  </div>
+<br>
+
+<div class="grouped fields">
+  <h3><label><%= @question4.question_text.html_safe %>:</label></h3>
+    <% @question4.random_answers.each do |a| %>
+        <p><input type="radio" name=questions[3]["user_answer"]> <label> <%= a.html_safe %></label></p>
+  <% end %>
+</div>
+<br>
+
+<div class="grouped fields">
+  <h3><label><%= @question5.question_text.html_safe %>:</label></h3>
+    <% @question5.random_answers.each do |a| %>
+        <p><input type="radio" name=questions[4]["user_answer"]> <label> <%= a.html_safe %></label></p>
+  <% end %>
+</div>
+<br>
+
+
+
 
     <button class="ui button" type="submit">Submit</button>
 

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   resources :questions
-  resources :quizzes
-  resources :challenges
-  resources :users
+  resources :users do
+    resources :challenges
+    resources :quizzes
+  end
   resources :sessions
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
