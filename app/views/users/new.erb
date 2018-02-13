@@ -1,0 +1,29 @@
+<h1>Let's sign you up!</h1>
+
+<% if @user.errors.full_messages %>
+  <% @user.errors.full_messages.each do |error| %>
+    <p><%=error %></p>
+  <% end %>
+<% end %>
+
+<% if flash[:message] %>
+  <p><%=flash[:message]%></p>
+<% end %>
+
+<div class='ui form'>
+<%= form_for(@user) do |f| %>
+  <div class="field">
+  <%= f.label 'Username:' %>
+  <%= f.text_field :username %><br>
+  </div>
+  <div class="field">
+  <%= f.label 'Password:' %>
+  <%= f.password_field :password %><br>
+  </div>
+  <div class="field">
+  <%= f.label 'Confirm Password:' %>
+  <%= f.password_field :password_confirmation %><br>
+  </div>
+  <%= f.submit %>
+<% end %>
+</div>
