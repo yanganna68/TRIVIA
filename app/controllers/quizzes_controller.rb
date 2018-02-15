@@ -1,6 +1,8 @@
 
 class QuizzesController < ApplicationController
   before_action :logged_in?
+  before_action :can_access_own_quiz, :except => [:new, :create]
+  before_action :can_not_go_back, :except => [:new, :create, :result]
 
 
   def new
@@ -47,6 +49,8 @@ class QuizzesController < ApplicationController
     end
 
     current_user.score += count
+    current_user.save
+
     redirect_to "/users/#{session[:user_id]}/quizzes/#{@quiz.id}/result"
   end
 
@@ -84,6 +88,22 @@ class QuizzesController < ApplicationController
     question.update(wrong_answer_2: questions["results"][question_num]["incorrect_answers"][1])
     question.update(wrong_answer_3: questions["results"][question_num]["incorrect_answers"][2])
     quiz.questions << question
+  end
+
+  def can_access_own_quiz
+    @quiz = Quiz.find(find_quiz_params.to_i)
+    if @quiz.challenge.user_id != current_user.id && @quiz.challenge.rival_id != current_user.id
+      return head(:forbidden)
+    end
+  end
+
+  def can_not_go_back
+    @quiz = Quiz.find(find_quiz_params.to_i)
+    if session[:user_id] == @quiz.challenge.user_id && @quiz.user_score
+      return head(:forbidden)
+    elsif session[:user_id] == @quiz.challenge.rival_id && @quiz.rival_score
+      return head(:forbidden)
+    end
   end
 
   private

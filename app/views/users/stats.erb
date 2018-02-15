@@ -1,7 +1,7 @@
 <center>
   <h2>Your current score: <%= @user.score %></h2>
 
-  <h1>Leader Board</h1>
+  <h1>🎉 Leader Board 🎉</h1>
   <% count = 1 %>
   <% @users_scores.each do |username, score| %>
     <p><strong><%= "#{count}.  #{username}: #{score} points" %></strong></p>

@@ -1,5 +1,6 @@
 class ChallengesController < ApplicationController
   before_action :logged_in?
+  before_action :can_only_access_own_challenge, :except => [:new, :create]
 
   def index
 
@@ -34,6 +35,13 @@ class ChallengesController < ApplicationController
     @user = User.find_by(id: @challenge.user_id)
     @rival = User.find_by(id: @challenge.rival_id)
 
+  end
+
+  def can_only_access_own_challenge
+    @challenge = Challenge.find(find_challenge_params[:id])
+    if @challenge.user_id != session[:user_id] && @challenge.rival_id != session[:user_id]
+      return head(:forbidden)
+    end
   end
 
   private

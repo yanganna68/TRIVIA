@@ -12,14 +12,14 @@
   <h2>You got: <%= @quiz.user_score %> points</h2><br>
   <% if @quiz.rival_score %>
     <% if @quiz.user_score > @quiz.rival_score %>
-      <%= "Congratulations! You beat #{@rival.username} #{@quiz.user_score} to #{@quiz.rival_score}." %>
+      <strong><%= "🙌 Congratulations! You beat #{@rival.username} #{@quiz.user_score} to #{@quiz.rival_score}. 🙌" %></strong>
     <% elsif @quiz.user_score < @quiz.rival_score %>
-      <%= "Maybe next time... #{@rival.username} beat you #{@quiz.rival_score} to #{@quiz.user_score}." %>
+      <strong><%= "😤 Maybe next time... #{@rival.username} beat you #{@quiz.rival_score} to #{@quiz.user_score}. 😤" %></strong>
     <% else %>
-      <%= "You tied #{@rival.username} with #{@quiz.user_score} points." %>
+      <strong><%= "😒 You tied #{@rival.username} with #{@quiz.user_score} points. 😒" %></strong>
     <% end %>
   <% else %>
-    <%= "Just waiting for #{@rival.username} to take the quiz..." %>
+    <strong><%= "🙄 Just waiting for #{@rival.username} to take the quiz... 🙄" %></strong>
   <% end %>
 
 <% else %>
@@ -27,14 +27,14 @@
   <h2>You got: <%= @quiz.rival_score %> points</h2><br>
   <% if @quiz.user_score %>
     <% if @quiz.rival_score > @quiz.user_score %>
-      <%= "Congratulations! You beat #{@user.username} #{@quiz.rival_score} to #{@quiz.user_score}." %>
+      <strong><%= " 🙌 Congratulations! You beat #{@user.username} #{@quiz.rival_score} to #{@quiz.user_score}. 🙌" %></strong>
     <% elsif @quiz.rival_score < @quiz.user_score %>
-      <%= "Maybe next time... #{@user.username} beat you #{@quiz.user_score} to #{@quiz.rival_score}." %>
+      <strong><%= "😤 Maybe next time... #{@user.username} beat you #{@quiz.user_score} to #{@quiz.rival_score}. 😤" %></strong>
     <% else %>
-      <%= "You tied #{@user.username} with #{@quiz.rival_score} points." %>
+      <strong><%= "😒 You tied #{@user.username} with #{@quiz.rival_score} points. 😒" %></strong>
     <% end %>
   <% else %>
-    <%= "Just waiting for #{@user.username} to take the quiz..." %>
+    <strong><%= "🙄 Just waiting for #{@user.username} to take the quiz... 🙄" %></strong>
   <% end %>
 <% end %>
 

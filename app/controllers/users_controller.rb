@@ -48,7 +48,7 @@ before_action :logged_in?, :except => [:new, :create]
     @users.each do |user|
       @users_scores[user.username] = user.score
     end
-    @users_scores.sort_by{|k,v| v}.reverse!.to_h
+    @users_scores = @users_scores.sort_by{|k,v| v}.reverse!
     if @users_scores.length <= 10
       @users_scores
     else

@@ -1,23 +1,28 @@
 
 <h2><center>Welcome back, <%= current_user.username %></center></h2>
+<br>
+
+
 
 <div class="ui three item menu">
   <a class="item" href="/users/<%= current_user.id %>/challenges/new">Game Page</a>
   <a class="item" href="/users/<%= current_user.id %>/stats">Stats</a>
   <a class="item" href="/users/<%= current_user.id %>/edit">Edit Profile</a>
 </div>
-
+<br>
+<center><%= image_tag("brain.png", size:"325x256") %></center>
+<br>
 <center>
 <% @quizzes.each do |quiz| %>
   <% if quiz.challenge.rival.id == session[:user_id] %>
     <% if !quiz.rival_score %>
       <%= "You have an open quiz from #{quiz.challenge.user.username}." %><br>
-      <%= link_to "Proceed to quiz!", "/users/#{session[:user_id]}/quizzes/#{quiz.id}"%>
+      <%= link_to "Proceed to quiz!", "/users/#{session[:user_id]}/quizzes/#{quiz.id}"%><br>
     <% end %>
-  <% else %>
+  <% elsif quiz.challenge.user.id == session[:user_id] %>
     <% if !quiz.user_score %>
       <%= "You have an open quiz from #{quiz.challenge.rival.username}." %><br>
-      <%= link_to "Proceed to quiz!", "/users/#{session[:user_id]}/quizzes/#{quiz.id}"%>
+      <%= link_to "Proceed to quiz!", "/users/#{session[:user_id]}/quizzes/#{quiz.id}"%><br>
     <% end %>
   <% end %>
 <% end %>

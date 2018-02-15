@@ -1,5 +1,5 @@
 <h1><center>Welcome to TRIVIA</center></h1><br>
-
+<center>
 <% if logged_in? %>
  <%= link_to "Go to Userpage", user_path(current_user), {class: "fluid ui blue button"} %>
 <% else %>
@@ -8,3 +8,6 @@
    <%= link_to "Sign Up", new_user_path, {class: 'item'} %>
  </div>
 <% end %>
+
+<%= image_tag("cover.png", size:"850x349") %>
+</center>
