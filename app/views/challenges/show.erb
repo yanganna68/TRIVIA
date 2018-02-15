@@ -1,0 +1,34 @@
+<center>
+<h1><%= @user.username %> vs <%= @rival.username %></h1>
+<br>
+
+
+
+
+<h3> Your Rivalry History</h3>
+  <% @quizzes.each do |quiz| %>
+    <% if quiz.challenge.rival.id == session[:user_id] %>
+      <% if !quiz.rival_score %>
+        <%= "You have an open quiz." %><br>
+        <%= link_to "Proceed to quiz!", "/users/#{session[:user_id]}/quizzes/#{quiz.id}"%>
+      <% else %>
+        <h3> Category: <%= quiz.category_name %></h3>
+        <p><%= @rival.username %> score: <%= quiz.rival_score %></p>
+        <p><%= @user.username %> score: <%= quiz.user_score %></p>
+      <% end %>
+    <% else %>
+      <% if !quiz.user_score %>
+        <%= "You have an open quiz." %><br>
+        <%= link_to "Proceed to quiz!", "/users/#{session[:user_id]}/quizzes/#{quiz.id}"%>
+      <% else %>
+        <h3> Category: <%= quiz.category_name %></h3>
+        <p><%= @user.username %> score: <%= quiz.user_score %></p>
+        <p><%= @rival.username %> score: <%= quiz.rival_score %></p>
+      <% end %>
+    <% end %>
+  <% end %>
+<br>
+
+<h3><%= link_to 'Start a new Challenge', new_user_quiz_path(challenge_id: @challenge.id) %></h3>
+
+</center>

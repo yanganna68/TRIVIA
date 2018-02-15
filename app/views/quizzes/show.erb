@@ -7,12 +7,18 @@
   <body>
 
     <h2>Here are the questions: </h2>
+    <% @question1 = @quiz.questions[0] %>
+    <% @question2 = @quiz.questions[1] %>
+    <% @question3 = @quiz.questions[2] %>
+    <% @question4 = @quiz.questions[3] %>
+    <% @question5 = @quiz.questions[4] %>
 
-    <form class="ui form" action="/result" method="POST">
+    <form class="ui form" action="/users/<%= session[:user_id] %>/quizzes/<%= @quiz.id %>/result" method="POST">
       <div class="grouped fields">
         <h3><label><%= @question1.question_text.html_safe %>:</label></h3>
           <% @question1.random_answers.each do |a| %>
-              <p><input type="radio" name=questions[]["user_answer"]> <label> <%= a.html_safe %></label></p>
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+              <p><input type="radio" name=questions[1] value="<%= a %>"> <label> <%= a.html_safe %></label></p>
         <% end %>
       </div>
     <br>
@@ -20,7 +26,8 @@
     <div class="grouped fields">
       <h3><label><%= @question2.question_text.html_safe %>:</label></h3>
         <% @question2.random_answers.each do |a| %>
-            <p><input type="radio" name=questions[1]["user_answer"]> <label> <%= a.html_safe %></label></p>
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <p><input type="radio" name=questions[2] value="<%= a %>"> <label> <%= a.html_safe %></label></p>
       <% end %>
     </div>
   <br>
@@ -28,7 +35,8 @@
   <div class="grouped fields">
     <h3><label><%= @question3.question_text.html_safe %>:</label></h3>
       <% @question3.random_answers.each do |a| %>
-          <p><input type="radio" name=questions[2]["user_answer"]> <label> <%= a.html_safe %></label></p>
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <p><input type="radio" name=questions[3] value="<%= a %>"> <label> <%= a.html_safe %></label></p>
     <% end %>
   </div>
 <br>
@@ -36,7 +44,8 @@
 <div class="grouped fields">
   <h3><label><%= @question4.question_text.html_safe %>:</label></h3>
     <% @question4.random_answers.each do |a| %>
-        <p><input type="radio" name=questions[3]["user_answer"]> <label> <%= a.html_safe %></label></p>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <p><input type="radio" name=questions[4] value="<%= a %>"> <label> <%= a.html_safe %></label></p>
   <% end %>
 </div>
 <br>
@@ -44,15 +53,14 @@
 <div class="grouped fields">
   <h3><label><%= @question5.question_text.html_safe %>:</label></h3>
     <% @question5.random_answers.each do |a| %>
-        <p><input type="radio" name=questions[4]["user_answer"]> <label> <%= a.html_safe %></label></p>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <p><input type="radio" name=questions[5] value="<%= a %>"> <label> <%= a.html_safe %></label></p>
   <% end %>
 </div>
 <br>
 
-
-
-
-    <button class="ui button" type="submit">Submit</button>
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<button class="ui button" type="submit">Submit</button>
 
 
     </form>

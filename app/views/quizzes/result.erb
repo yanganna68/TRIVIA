@@ -1,0 +1,42 @@
+<center>
+<h1>Here are the results:</h1>
+
+<% @questions.each do |q| %>
+<h3><%= q.question_text.html_safe %></h3>
+<p>Correct Answer: <%= q.correct_answer.html_safe %></p>
+<% end %>
+<br>
+
+<% if session[:user_id] == @quiz.challenge.user_id  %>
+
+  <h2>You got: <%= @quiz.user_score %> points</h2><br>
+  <% if @quiz.rival_score %>
+    <% if @quiz.user_score > @quiz.rival_score %>
+      <%= "Congratulations! You beat #{@rival.username} #{@quiz.user_score} to #{@quiz.rival_score}." %>
+    <% elsif @quiz.user_score < @quiz.rival_score %>
+      <%= "Maybe next time... #{@rival.username} beat you #{@quiz.rival_score} to #{@quiz.user_score}." %>
+    <% else %>
+      <%= "You tied #{@rival.username} with #{@quiz.user_score} points." %>
+    <% end %>
+  <% else %>
+    <%= "Just waiting for #{@rival.username} to take the quiz..." %>
+  <% end %>
+
+<% else %>
+
+  <h2>You got: <%= @quiz.rival_score %> points</h2><br>
+  <% if @quiz.user_score %>
+    <% if @quiz.rival_score > @quiz.user_score %>
+      <%= "Congratulations! You beat #{@user.username} #{@quiz.rival_score} to #{@quiz.user_score}." %>
+    <% elsif @quiz.rival_score < @quiz.user_score %>
+      <%= "Maybe next time... #{@user.username} beat you #{@quiz.user_score} to #{@quiz.rival_score}." %>
+    <% else %>
+      <%= "You tied #{@user.username} with #{@quiz.rival_score} points." %>
+    <% end %>
+  <% else %>
+    <%= "Just waiting for #{@user.username} to take the quiz..." %>
+  <% end %>
+<% end %>
+
+<br>
+<h3><%= link_to 'Return To Main Menu', user_path %></h3>

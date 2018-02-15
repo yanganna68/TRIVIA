@@ -4,8 +4,8 @@ class CreateQuizzes < ActiveRecord::Migration[5.1]
       t.string :category_name
       t.integer :category_id
       t.integer :challenge_id
-      t.integer :user_score, default: 0
-      t.integer :rival_score, default: 0
+      t.integer :user_score, default: nil
+      t.integer :rival_score, default: nil
       t.timestamps
     end
   end

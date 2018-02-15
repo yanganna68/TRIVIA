@@ -1,0 +1,11 @@
+<h2>Please Select Your Category: </h2><br>
+
+
+<div class="ui grid">
+    <% @categories.each do |category_name, category_id| %>
+    <div class="four wide column">
+      <i class="bomb icon"></i>
+      <%= link_to "#{category_name}", user_quizzes_path(id: category_id, challenge_id: @challenge.id), method:"POST" %>
+    </div>
+    <% end %>
+</div>

@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 20180212163552) do
     t.string "category_name"
     t.integer "category_id"
     t.integer "challenge_id"
-    t.integer "user_score", default: 0
-    t.integer "rival_score", default: 0
+    t.integer "user_score"
+    t.integer "rival_score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

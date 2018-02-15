@@ -3,6 +3,22 @@
 
 <div class="ui three item menu">
   <a class="item" href="/users/<%= current_user.id %>/challenges/new">Game Page</a>
-  <a class="item" href="/users/:id/stats">Your Stats</a>
-  <a class="item" href="/users/:id/edits">Edit Profile</a>
+  <a class="item" href="/users/<%= current_user.id %>/stats">Stats</a>
+  <a class="item" href="/users/<%= current_user.id %>/edit">Edit Profile</a>
 </div>
+
+<center>
+<% @quizzes.each do |quiz| %>
+  <% if quiz.challenge.rival.id == session[:user_id] %>
+    <% if !quiz.rival_score %>
+      <%= "You have an open quiz from #{quiz.challenge.user.username}." %><br>
+      <%= link_to "Proceed to quiz!", "/users/#{session[:user_id]}/quizzes/#{quiz.id}"%>
+    <% end %>
+  <% else %>
+    <% if !quiz.user_score %>
+      <%= "You have an open quiz from #{quiz.challenge.rival.username}." %><br>
+      <%= link_to "Proceed to quiz!", "/users/#{session[:user_id]}/quizzes/#{quiz.id}"%>
+    <% end %>
+  <% end %>
+<% end %>
+</center>
