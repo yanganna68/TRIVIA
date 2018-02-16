@@ -10,7 +10,7 @@
   <a class="item" href="/users/<%= current_user.id %>/edit">Edit Profile</a>
 </div>
 <br>
-<center><%= image_tag("brain.png", size:"325x256") %></center>
+<center><%= image_tag(image_path("brain.png"), size:"325x256") %></center>
 <br>
 <center>
 <% @quizzes.each do |quiz| %>
